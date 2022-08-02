@@ -368,7 +368,76 @@ pre code {
 </div>
 
 
+<div id="derivatives-in-r" class="section level3">
+<h3>Derivatives in R !</h3>
+<p>Find the derivative of <span class="math display">\[f(x) =
+5x^2\]</span></p>
+<pre class="r"><code>ex_1 &lt;- expression(5 * x ^ 2)
 
+
+my_derivative &lt;- deriv(ex_1, &quot;x&quot;)
+my_derivative</code></pre>
+<pre><code>## expression({
+##     .value &lt;- 5 * x^2
+##     .grad &lt;- array(0, c(length(.value), 1L), list(NULL, c(&quot;x&quot;)))
+##     .grad[, &quot;x&quot;] &lt;- 5 * (2 * x)
+##     attr(.value, &quot;gradient&quot;) &lt;- .grad
+##     .value
+## })</code></pre>
+<pre class="r"><code># I want to find the slope at x =2.8
+
+x &lt;- 2.8
+
+eval(my_derivative)</code></pre>
+<pre><code>## [1] 39.2
+## attr(,&quot;gradient&quot;)
+##       x
+## [1,] 28</code></pre>
+<pre class="r"><code>?expression
+?deriv</code></pre>
+<p>Find the slope of <span class="math inline">\(g(z)=
+2z^3-10.5z^2+4.1\)</span></p>
+<pre class="r"><code>gz &lt;- expression(2 * z^3 - 10.5 * z^2 + 4.1)
+dg_dz &lt;- deriv(gz, &quot;z&quot;)
+dg_dz</code></pre>
+<pre><code>## expression({
+##     .expr3 &lt;- z^2
+##     .value &lt;- 2 * z^3 - 10.5 * .expr3 + 4.1
+##     .grad &lt;- array(0, c(length(.value), 1L), list(NULL, c(&quot;z&quot;)))
+##     .grad[, &quot;z&quot;] &lt;- 2 * (3 * .expr3) - 10.5 * (2 * z)
+##     attr(.value, &quot;gradient&quot;) &lt;- .grad
+##     .value
+## })</code></pre>
+<pre class="r"><code>#Lets evaluate the slope over a range of values
+
+z &lt;- seq(from= -3, to= 4, by = 0.5)
+
+#Evaluate
+
+eval(dg_dz)</code></pre>
+<pre><code>##  [1] -144.400  -92.775  -53.900  -26.275   -8.400    1.225    4.100    1.725
+##  [9]   -4.400  -12.775  -21.900  -30.275  -36.400  -38.775  -35.900
+## attr(,&quot;gradient&quot;)
+##         z
+##  [1,] 117
+##  [2,]  90
+##  [3,]  66
+##  [4,]  45
+##  [5,]  27
+##  [6,]  12
+##  [7,]   0
+##  [8,]  -9
+##  [9,] -15
+## [10,] -18
+## [11,] -18
+## [12,] -15
+## [13,]  -9
+## [14,]   0
+## [15,]  12</code></pre>
+<p>?eval</p>
+<p>usethis::use_github()</p>
+<p>“gh_token_help()”</p>
+</div>
 
 
 
