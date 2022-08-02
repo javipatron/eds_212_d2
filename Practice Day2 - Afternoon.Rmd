@@ -21,7 +21,12 @@ head(penguins)
 Scatterplot of body mass versus flipper length:
 
 ```{r}
-ggplot(data=penguins, aes(x=body_mass_g, y=flipper_length_mm))+geom_point(aes(color = species), size = 4)
+ggplot(data=penguins, aes(x=body_mass_g, y=flipper_length_mm)) +
+  geom_point(aes(color = species), size = 0.8) + 
+  facet_wrap(~island) + 
+  theme_minimal() + 
+  labs(x = "Body mass (g)", 
+  y = "Flipper lenght(mm)")
 ```
 
 
